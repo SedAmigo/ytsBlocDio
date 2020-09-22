@@ -21,7 +21,7 @@ class Movies {
  final String smallCoverImage;
  final String mediumCoverImage;
  final String largeCoverImage;
- final Torrent torrents;
+ List<Torrent> torrents;
  final String dateUploaded;
  final int dateUploadedUnix;
 
@@ -62,6 +62,7 @@ class Movies {
         year = json["year"],
         rating = json["rating"].toDouble(),
         runtime = json["runtime"],
+        genres = List<String>.from(json["genres"].map((x) => x)),
         summary = json["summary"],
         descriptionFull = json["description_full"],
         synopsis = json["synopsis"],
@@ -71,7 +72,7 @@ class Movies {
         smallCoverImage = json["small_cover_image"],
         mediumCoverImage = json["medium_cover_image"],
         largeCoverImage = json["large_cover_image"],
-        torrents = Torrent.fromJson(json["torrents"]),
+        torrents = List<Torrent>.from(json["torrents"].map((x) => Torrent.fromJson(x))),
         dateUploaded = json["date_uploaded"],
         dateUploadedUnix = json["date_uploaded_unix"];
 }

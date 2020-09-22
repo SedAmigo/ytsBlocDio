@@ -24,6 +24,7 @@ class ApiProvider {
   Future<MovieResponce> getMovies() async {
     try {
       Response response = await _dio.get(_moviesEndPoint);
+      print(response);
       return MovieResponce.fromJson(response.data);
     } catch (error, stacktrace) {
       print("Exception occured: $error stackTrace: $stacktrace");

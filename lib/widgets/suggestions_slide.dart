@@ -53,7 +53,7 @@ class _MaterialSliderState extends State<MaterialSlider> {
       ),
     );
   }
-
+  
   getExpenseSliders(List<Movies> movies) {
     return movies
         .map((movie) => GestureDetector(
@@ -120,8 +120,7 @@ class _MaterialSliderState extends State<MaterialSlider> {
                       bottom: 18.0,
                       left: 10.0,
                       child: Text(
-                        'eho',
-                        //movies.genres[],
+                        movie.genres[0],
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 9.0,

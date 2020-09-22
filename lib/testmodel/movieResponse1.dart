@@ -1,13 +1,14 @@
-import 'package:ytsbloc/model/movies.dart';
+import 'movie1.dart';
 
 class MovieResponce {
-  List<Movies> movies;
+  List<Movie> movies;
   final String error;
 
   MovieResponce({this.movies, this.error});
 
   MovieResponce.fromJson(Map<String, dynamic> json)
-      : movies = List<Movies>.from(json["movies"].map((x) => Movies.fromJson(x))),
+      : movies =
+            (json["movies"] as List).map((i) => new Movie.fromJson(i)).toList(),
         error = "";
 
   MovieResponce.withError(String errorValue)

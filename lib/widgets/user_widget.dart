@@ -76,7 +76,7 @@ class _UserWidgetState extends State<UserWidget> {
       Padding(
         padding: EdgeInsets.only(top: 5),
       ),
-      Text(user.location.street, style: Theme.of(context).textTheme.body1),
+      Text(user.location.street.name, style: Theme.of(context).textTheme.body1),
       Padding(
         padding: EdgeInsets.only(top: 5),
       ),
