@@ -7,7 +7,7 @@ Widget buildLoadingWidget(){
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children:[
-        const SpinKitPouringHourglass(color: AppColor.mainColor),
+        const SpinKitWanderingCubes(color: AppColor.mainColor),
       ],
     ),
   );

@@ -2,14 +2,14 @@ import 'package:rxdart/rxdart.dart';
 import 'package:ytsbloc/model/movieresponse.dart';
 import 'package:ytsbloc/repository/repository.dart';
 
-class GetSuggestionBloc {
+class GetMoviesBloc {
   Repository _repository = Repository();
 
   final BehaviorSubject<MovieResponce> _subject =
       BehaviorSubject<MovieResponce>();
 
-  getSug() async {
-    MovieResponce responce = await _repository.getSuggestions();
+  getMov() async {
+    MovieResponce responce = await _repository.getMovie();
     _subject.sink.add(responce);
   }
 
@@ -20,4 +20,4 @@ class GetSuggestionBloc {
   BehaviorSubject<MovieResponce> get subject => _subject;
 }
 
-final suggetionBloc = GetSuggestionBloc();
+final getMovieBoc = GetMoviesBloc();

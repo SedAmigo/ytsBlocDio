@@ -1,11 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screenutil.dart';
 import 'package:ytsbloc/bloc/get_suggestions_bloc.dart';
 import 'package:ytsbloc/elements/error_element.dart';
 import 'package:ytsbloc/elements/loader_element.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:ytsbloc/model/movieresponse.dart';
 import 'package:ytsbloc/model/movies.dart';
+import 'package:ytsbloc/widgets/custom_widgets/custom_text.dart';
+import 'package:ytsbloc/widgets/screen_widgets/movie_detail.dart';
+import '../../utils/number_extensions.dart';
 
 class MaterialSlider extends StatefulWidget {
   @override
@@ -21,6 +25,12 @@ class _MaterialSliderState extends State<MaterialSlider> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(
+      context,
+      width: 375,
+      height: 812,
+      allowFontScaling: false,
+    );
     return StreamBuilder<MovieResponce>(
       stream: suggetionBloc.subject.stream,
       // ignore: missing_return
@@ -40,24 +50,36 @@ class _MaterialSliderState extends State<MaterialSlider> {
   }
 
   Widget _suggestionSlider(MovieResponce data) {
-    List<Movies> movies = data.movies;
+    List<Movies> movies = data.data.movies;
     return Container(
+      width: 200.flexibleWidth,
+      height: 200.flexibleHeight,
+      //child:  getExpenseSliders(movies),
       child: CarouselSlider(
         options: CarouselOptions(
           autoPlay: true,
           enlargeCenterPage: false,
-          height: 200.0,
-          viewportFraction: 0.0,
+          height: 200.0.flexibleHeight,
+          viewportFraction: 0.9,
         ),
         items: getExpenseSliders(movies),
       ),
     );
   }
-  
+
   getExpenseSliders(List<Movies> movies) {
     return movies
         .map((movie) => GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MovieDetail(
+                      movie: movie,
+                    ),
+                  ),
+                );
+              },
               child: Container(
                 padding: EdgeInsets.only(
                   left: 3.0,
@@ -73,9 +95,9 @@ class _MaterialSliderState extends State<MaterialSlider> {
                         shape: BoxShape.rectangle,
                         image: DecorationImage(
                           fit: BoxFit.cover,
-                          image: movie.largeCoverImage == null
-                              ? AssetImage('lib/assets/img/placeholder.jpg')
-                              : NetworkImage(movie.largeCoverImage),
+                          image: movie.backgroundImage == null
+                              ? AssetImage('assets/img/placeholder.jpg')
+                              : NetworkImage(movie.backgroundImage),
                         ),
                       ),
                     ),
@@ -100,31 +122,23 @@ class _MaterialSliderState extends State<MaterialSlider> {
                       bottom: 30.0,
                       child: Container(
                         padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                        width: 250.0,
+                        //width: 250.0,
                         child: Column(
                           children: [
-                            Text(
-                              movie.title,
-                              style: TextStyle(
-                                height: 1.5,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12.0,
-                              ),
+                            CustomText(
+                              txt: movie.title,
                             ),
                           ],
                         ),
                       ),
                     ),
+                    10.verticalSpace,
                     Positioned(
                       bottom: 18.0,
                       left: 10.0,
-                      child: Text(
-                        movie.genres[0],
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 9.0,
-                        ),
+                      child: CustomText(
+                        txt: movie.genres[0],
+                        txtSize: 9.flexibleFontSize,
                       ),
                     ),
                     Positioned(

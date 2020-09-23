@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ytsbloc/widgets/user_widget.dart';
+import 'package:ytsbloc/widgets/screen_widgets/user_widget.dart';
 
 class SuggestionTab extends StatefulWidget {
   @override
