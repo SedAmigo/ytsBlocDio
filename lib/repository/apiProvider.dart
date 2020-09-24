@@ -5,11 +5,11 @@ import 'package:ytsbloc/model/movieresponse.dart';
 import 'package:ytsbloc/newmodel/userresponse.dart';
 
 class ApiProvider {
+  static String _mainUrl = "https://yts.mx/api/v2";
   final Dio _dio = Dio();
   final String _userEndPoint = "https://randomuser.me/api/";
-  final String _moviesEndPoint = "https://yts.mx/api/v2/list_movies.json";
-  final String _movieSuggestionEndPoint =
-      "https://yts.mx/api/v2/movie_suggestions.json";
+  final String _moviesEndPoint = "$_mainUrl/list_movies.json";
+  final String _movieSuggestionEndPoint = "$_mainUrl/movie_suggestions.json";
 
   Future<UserResponse> getUser() async {
     try {
@@ -40,11 +40,12 @@ class ApiProvider {
   Future<MovieResponce> getMovieSuggestion() async {
     var random = new Random();
     var ranId = random.nextInt(1000);
-    var param ={
-      "movie_id":ranId,
+    var param = {
+      "movie_id": ranId,
     };
     try {
-      Response response = await _dio.get(_movieSuggestionEndPoint , queryParameters: param);
+      Response response =
+          await _dio.get(_movieSuggestionEndPoint, queryParameters: param);
       print(response);
       return MovieResponce.fromJson(response.data);
     } catch (error, stacktrace) {
@@ -53,9 +54,19 @@ class ApiProvider {
     }
   }
 
-  // Future<MovieResponce> search(String searchValue) async{
-  //   try{
-  //     Response response = await _dio.get(path)
-  //   }catch
-  // }
+  Future<MovieResponce> search(String searchValue) async {
+    var params = {
+      "query_term": searchValue,
+    };
+
+    try {
+      Response response =
+          await _dio.get(_moviesEndPoint, queryParameters: params);
+      print(response);
+      return MovieResponce.fromJson(response.data);
+    } catch (error, stacktrace) {
+      print("Exception occured: $error stackTrace: $stacktrace");
+      return MovieResponce.withError("$error");
+    }
+  }
 }

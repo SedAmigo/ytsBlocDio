@@ -23,10 +23,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      //backgroundColor: Colors.black,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0),
         child: AppBar(
+          elevation: 0.0,
           centerTitle: true,
           backgroundColor: AppColor.mainColor,
           title: Text(
@@ -72,7 +73,7 @@ class _MainScreenState extends State<MainScreen> {
                 topRight: Radius.circular(30.0),
               ),
               child: BottomNavigationBar(
-                elevation: 0.0,
+                //elevation: 0.0,
                 backgroundColor: AppColor.mainColor,
                 iconSize: 20,
                 unselectedItemColor: AppColor.unsColor,

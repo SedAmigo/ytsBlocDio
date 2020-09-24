@@ -16,4 +16,8 @@ class Repository{
   Future<MovieResponce> getSuggestions(){
     return _apiProvider.getMovieSuggestion();
   }
+
+  // Future<MovieResponce> movieSearch(String value){
+  //   return _apiProvider.search(value);
+  // }
 }

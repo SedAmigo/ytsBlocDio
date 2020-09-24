@@ -97,7 +97,7 @@ class _MovieDetailState extends State<MovieDetail> {
                   ),
                   10.verticalSpace,
                   Container(
-                    height: 100.flexibleHeight,
+                    height: 120.flexibleHeight,
                     child: Card(
                       color: AppColor.mainColor,
                       child: Padding(
@@ -120,10 +120,42 @@ class _MovieDetailState extends State<MovieDetail> {
                                   color: Colors.white,
                                 ),
                                 20.verticalSpace,
+                                Flexible(
+                                  child: RichText(
+                                    overflow: TextOverflow.ellipsis,
+                                    strutStyle: StrutStyle(
+                                        fontSize: 14.0.flexibleFontSize),
+                                    text: TextSpan(
+                                        style: GoogleFonts.workSans(
+                                          textStyle: TextStyle(
+                                            fontSize: 14.flexibleFontSize,
+                                            fontWeight: FontWeight.w600,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                        text: movie.title),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
                                 CustomText(
-                                  txt: movie.title,
+                                  txt: 'Genre',
                                   txtSize: 14.flexibleFontSize,
                                   txtColor: Colors.white,
+                                ),
+                                10.horizontalSpace,
+                                Icon(
+                                  EvaIcons.arrowRight,
+                                  size: 15.0,
+                                  color: Colors.white,
+                                ),
+                                20.verticalSpace,
+                                CustomText(
+                                  txt:
+                                      '${movie.genres[0]}',
                                 ),
                               ],
                             ),
