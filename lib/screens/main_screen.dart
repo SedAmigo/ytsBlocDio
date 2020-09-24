@@ -23,7 +23,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      //backgroundColor: Colors.black,
+      backgroundColor: Colors.black,
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(50.0),
         child: AppBar(

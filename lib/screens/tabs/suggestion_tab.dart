@@ -31,6 +31,5 @@ class _SuggestionTabState extends State<SuggestionTab> {
         ],
       ),
     );
-    ;
   }
 }

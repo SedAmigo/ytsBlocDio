@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:dart_random_choice/dart_random_choice.dart';
 import 'package:eva_icons_flutter/eva_icons_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:ytsbloc/bloc/search_bloc.dart';
@@ -12,7 +11,6 @@ import 'package:ytsbloc/model/movies.dart';
 import 'package:ytsbloc/utils/appcolor.dart';
 import 'package:ytsbloc/widgets/screen_widgets/movie_detail.dart';
 import '../../utils/number_extensions.dart';
-import 'package:timeago/timeago.dart' as timeago;
 
 class SearchTab extends StatefulWidget {
   @override
@@ -131,6 +129,7 @@ class _SearchTabState extends State<SearchTab> {
               ),
             ),
             autocorrect: false,
+            // ignore: deprecated_member_use
             autovalidate: true,
           ),
         ),

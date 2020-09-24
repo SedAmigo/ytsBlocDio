@@ -54,7 +54,6 @@ class _MaterialSliderState extends State<MaterialSlider> {
     return Container(
       width: 200.flexibleWidth,
       height: 200.flexibleHeight,
-      //child:  getExpenseSliders(movies),
       child: CarouselSlider(
         options: CarouselOptions(
           autoPlay: true,
@@ -122,7 +121,6 @@ class _MaterialSliderState extends State<MaterialSlider> {
                       bottom: 30.0,
                       child: Container(
                         padding: EdgeInsets.only(left: 10.0, right: 10.0),
-                        //width: 250.0,
                         child: Column(
                           children: [
                             CustomText(
